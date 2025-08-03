@@ -1,5 +1,8 @@
 import requests
 
+print("🔧 Бот запускается...")
+
+
 # === Конфигурация ===
 BOT_TOKEN = "8403528772:AAEq_sv71CtKGh5Xp1tHwy8Qb3S7-pnmORc"
 CHAT_ID = "-1002580812908"  # ID твоего канала или чата
@@ -31,6 +34,10 @@ def send_signal():
         "text": message,
         "parse_mode": PARSE_MODE
     }
+
+    print("📡 Отправка запроса...")
+    print(payload)
+
 
     response = requests.post(url, json=payload)
     if response.status_code == 200:
