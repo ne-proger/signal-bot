@@ -4,9 +4,13 @@ print("🔧 Бот запускается...")
 
 
 # === Конфигурация ===
-BOT_TOKEN = "8403528772:AAEq_sv71CtKGh5Xp1tHwy8Qb3S7-pnmORc"
-CHAT_ID = "-1002580812908"  # ID твоего канала или чата
-PARSE_MODE = "Markdown"  # или "HTML"
+import os
+import requests
+
+# === Конфигурация ===
+BOT_TOKEN = os.getenv("BOT_TOKEN")
+CHAT_ID = os.getenv("CHAT_ID")
+PARSE_MODE = "Markdown"
 
 # === Пример сигнала ===
 def send_signal():
@@ -34,17 +38,11 @@ def send_signal():
         "text": message,
         "parse_mode": PARSE_MODE
     }
-
-    print("📡 Отправка запроса...")
-    print(payload)
-
-
     response = requests.post(url, json=payload)
     if response.status_code == 200:
         print("✅ Сигнал успешно отправлен.")
     else:
         print(f"❌ Ошибка: {response.status_code} — {response.text}")
-
-# === Запуск ===
+        
 if __name__ == "__main__":
     send_signal()
